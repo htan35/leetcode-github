@@ -14,10 +14,10 @@ public:
         if(node == NULL) return NULL;
         int curr = node->val;
 
-        if(p->val < node->val && q->val < curr){
+        if(p->val < curr && q->val < curr){
             return lowestCommonAncestor(node->left, p, q);
         }
-        if(p->val > node->val && q->val > curr){
+        if(p->val > curr && q->val > curr){
             return lowestCommonAncestor(node->right, p, q);
         }
         
