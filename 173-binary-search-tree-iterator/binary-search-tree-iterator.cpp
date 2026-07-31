@@ -9,29 +9,38 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+
+ // idea is iterative inorder logic using a stack
 class BSTIterator {
+private: 
+    stack<TreeNode*> st;
+
 public:
-    vector<int> inorder;
-    int idx;
-
-    void buildInorder(TreeNode* root) {
-        if (!root) return;
-        buildInorder(root->left);
-        inorder.push_back(root->val);
-        buildInorder(root->right);
-    }
-
     BSTIterator(TreeNode* root) {
-        idx = 0;
-        buildInorder(root);
+        pushall(root);
+
+        
     }
     
     int next() {
-        return inorder[idx++];   
+        TreeNode* temp = st.top();
+        st.pop();
+        pushall(temp->right);
+        return temp->val;
+        
     }
     
     bool hasNext() {
-        return idx < inorder.size();
+        return !st.empty();
+        
+    }
+    private: 
+    void pushall(TreeNode* node){
+        while(node != NULL){
+            st.push(node);
+            node = node->left;
+        }
     }
 };
 
