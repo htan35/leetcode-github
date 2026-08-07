@@ -12,6 +12,7 @@ public:
             if (nums[mid] == target) return mid;
             //left half sorted
             if(nums[low] <= nums[mid]){
+                // finds element
                 if(target >= nums[low] && target < nums[mid]){
                     high = mid - 1;
                 }
@@ -22,6 +23,7 @@ public:
 
             // right half
             else{
+                //finds element
                 if(target > nums[mid] && target <= nums[high]){
                     low = mid + 1;
                 }
